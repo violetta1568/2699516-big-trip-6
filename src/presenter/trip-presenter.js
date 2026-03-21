@@ -14,7 +14,7 @@ export default class TripPresentor {
   init() {
     render(new CreateForm(), this.container, RenderPosition.BEFOREEND);
     render(new TripEvents(), this.container, RenderPosition.BEFOREEND);
-    
+
     for (let i = 0; i < INITIAL_POINTS_COUNT; i++) {
       render(new Point(), this.container, RenderPosition.BEFOREEND);
     }
