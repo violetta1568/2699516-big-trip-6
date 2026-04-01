@@ -2,9 +2,9 @@
 import Point from '../view/route-point-view.js';
 import CreateForm from '../view/form-edit-view.js';
 import TripEvents from '../view/trip-events-view.js';
-import Filter from '../view/filters-view.js';      
-import Sort from '../view/sort-view.js';      
-import EmptyPointsView from '../view/empty-points-view.js';     
+import Filter from '../view/filters-view.js';
+import Sort from '../view/sort-view.js';
+import EmptyPointsView from '../view/empty-points-view.js';
 
 import { render, RenderPosition } from '../framework/render.js';
 import { filters } from '../mock/filter.js';
@@ -31,7 +31,9 @@ export default class TripPresenter {
       tripControls.className = 'trip-controls';
       tripControls.innerHTML = '<h2 class="visually-hidden">Filter</h2>';
       const tripMain = document.querySelector('.trip-main');
-      if (tripMain) tripMain.appendChild(tripControls);
+      if (tripMain) {
+        tripMain.appendChild(tripControls);
+      }
     }
 
     render(new Filter(filters), tripControls, RenderPosition.BEFOREEND);
@@ -47,14 +49,16 @@ export default class TripPresenter {
     render(tripEventsComponent, this.#container, RenderPosition.BEFOREEND);
 
     const eventsList = document.querySelector('.trip-events__list');
-    if (!eventsList) return;
+    if (!eventsList) {
+      return;
+    }
 
     eventsList.innerHTML = '';
 
-    points.forEach(point => {
-      const destination = destinations.find(dest => dest.id === point.destination);
+    points.forEach((point) => {
+      const destination = destinations.find((dest) => dest.id === point.destination);
       const offersByType = this.#pointsModel.getOffersByType(point.type);
-      const pointOffers = offersByType ? offersByType.offers.filter(offer =>
+      const pointOffers = offersByType ? offersByType.offers.filter((offer) =>
         point.offers?.includes(offer.id)
       ) : [];
 
@@ -103,7 +107,7 @@ export default class TripPresenter {
         closeForm,
         closeForm
       );
-      
+
       pointView.element.replaceWith(form.element);
       form.setHandlers();
       currentForm = form;

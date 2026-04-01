@@ -23,7 +23,7 @@ function formatDuration(dateFrom, dateTo) {
 function createPointTemplate(point, destination, offers) {
   const dateFrom = new Date(point.date_from);
   const dateTo = new Date(point.date_to);
-  
+
   return `
     <li class="trip-events__item">
       <div class="event">
@@ -45,7 +45,7 @@ function createPointTemplate(point, destination, offers) {
         </p>
         <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
-          ${offers.map(offer => `
+          ${offers.map((offer) => `
             <li class="event__offer">
               <span class="event__offer-title">${offer.title}</span>
               &plus;&euro;&nbsp;
@@ -86,4 +86,5 @@ export default class Point extends AbstractView {
 
   setRollupClickHandler(callback) {
     this.element.querySelector('.event__rollup-btn').addEventListener('click', callback);
-}}
+  }
+}
